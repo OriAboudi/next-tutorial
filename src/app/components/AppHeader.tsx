@@ -1,0 +1,31 @@
+import Link from "next/link"
+
+const MENU_ITEMS = [
+    { title: 'Home', path: '/' },
+    { title: 'Post', path: '/post' },
+    { title: 'About', path: '/about' },
+]
+
+export default function AppHeader() {
+
+    return (
+        <header>
+            <nav className="bg-gray-800 px-5 py-5">
+                <div className="flex mx-auto max-w-5xl">
+                    <ul className="flex gap-4">
+                        {MENU_ITEMS.map((item) => (
+
+                            <li key={item.path}
+                                className="text-gray-300 hover:text-white  hover:bg-gray-700 rounded-sm font-medium px-3 py-2">
+                                <Link href={item.path}>{item.title}</Link>
+                            </li>
+
+                        ))}
+
+                    </ul>
+
+                </div>
+            </nav>
+        </header>
+    )
+}
