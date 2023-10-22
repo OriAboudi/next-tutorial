@@ -1,5 +1,5 @@
 import '@/app/globals.css';
-import AppHeader from './components/AppHeader';
+import AppHeader from '../components/AppHeader';
 
 export const metadata = {
   title: 'Home | Next.js',

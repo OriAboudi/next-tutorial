@@ -1,6 +1,6 @@
 // localhost:3000/post/:postId/edit
 
-import PostForm from "@/app/components/PostForm"
+import PostForm from "../../../../components/PostForm"
 
 interface PostEdit {
     params:{

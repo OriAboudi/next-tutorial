@@ -1,16 +1,20 @@
 // localhost:3000/post
 
 import Link from "next/link";
-import PostCard from "../components/PostCard";
+import PostCard from "@/components/PostCard";
+import {Post} from "@/types/posts"
+import {getPosts} from "@/services/posts"
+
+
 
 export const metadata = {
     title: "Posts View| Next.js",
     description:"posts view description"
 }
 
-const POSTS = Array.from({ length: 140 })
-
-export default function Posts() {
+export default async  function Posts() {
+    const posts:[Post]  = await getPosts()
+  
     return (
         <>
             <header className="flex items-center mb-4">
@@ -19,9 +23,9 @@ export default function Posts() {
 
             </header>
             <ul className="grid grid-cols-3 gap-3  ">
-                {POSTS.map((_, index) => (
+                {posts.map((post) => (
 
-                    <PostCard key={index} postId={index.toString()} />
+                    <PostCard key={post.id} {...post} />
 
                 ))}
             </ul>
