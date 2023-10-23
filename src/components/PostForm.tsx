@@ -1,13 +1,25 @@
 'use client'
 
 import { useState } from "react"
+import { savePost } from '@/services/posts'
 
-export default function PostForm() {
+interface PostFormProps{
+    postId?: string
+}
+
+export default function PostForm(props:PostFormProps) {
     const [title, setTitle] = useState<string>("")
     const [body, setBody] = useState<string>("")
+    const id = props?.postId?props.postId:""
+
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault()
+        const result = await savePost({id, title, body })
+    }
+
     return (
 
-        <form className="post-form__form">
+        <form onSubmit={handleSubmit} className="post-form__form">
             <div>{body}{title}</div>
             <div className="mb-4">
                 <label className="post-form__label">Title</label>
@@ -19,7 +31,8 @@ export default function PostForm() {
             </div>
             <div className="mb-4">
                 <label className="post-form__label">Body</label>
-                <input type="text"
+                <textarea
+                    rows={10}
                     className="post-form__input"
                     placeholder="  body..."
                     value={body}

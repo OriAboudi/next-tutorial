@@ -16,10 +16,11 @@ export function generateMetadata({params:{postId}}:PostEdit){
 }
 
 export default function EditPost(props: PostEdit) {
+    const postId =props.params.postId
     return (
         <>
-            <div>edit post - {props.params.postId}</div>
-            <PostForm/>
+            <div>edit post - {postId}</div>
+            <PostForm postId={postId}/>
         </>
     )
 }
